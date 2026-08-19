@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Arena Geométrica: 2D & 3D</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Fundo Animado com Elementos Flutuantes -->
+    <div class="bg-shapes">
+        <div class="shape s1"></div>
+        <div class="shape s2"></div>
+        <div class="shape s3"></div>
+    </div>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">🚀 Arena <span>Geométrica</span></div>
+        <p>Aprenda formas, áreas e volumes de um jeito épico e interativo!</p>
+    </header>
+
+    <!-- Navegação por Abas Estilizadas -->
+    <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab(event, 'plana')">📐 Plana (2D)</button>
+        <button class="tab-btn" onclick="switchTab(event, 'espacial')">🔮 Espacial (3D)</button>
+        <button class="tab-btn" onclick="switchTab(event, 'simulador')">⚡ Super Simulador</button>
+    </nav>
+
+    <main class="main-container">
+
+        <!-- ABA 1: GEOMETRIA PLANA -->
+        <section id="plana" class="tab-content active">
+            <div class="section-title">
+                <h2>Geometria Plana</h2>
+                <p>O universo das superfícies planas, linhas e ângulos.</p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card neon-blue" onclick="expandCard(this)">
+                    <div class="card-icon">🟦</div>
+                    <h3>Quadrado</h3>
+                    <p class="formula">Área: l²</p>
+                    <p class="formula">Perímetro: 4l</p>
+                    <span class="badge">2D</span>
+                </div>
+                <div class="card neon-purple" onclick="expandCard(this)">
+                    <div class="card-icon">🟧</div>
+                    <h3>Retângulo</h3>
+                    <p class="formula">Área: b × h</p>
+                    <p class="formula">Perímetro: 2(b + h)</p>
+                    <span class="badge">2D</span>
+                </div>
+                <div class="card neon-pink" onclick="expandCard(this)">
+                    <div class="card-icon">🔺</div>
+                    <h3>Triângulo</h3>
+                    <p class="formula">Área: (b × h) / 2</p>
+                    <span class="badge">2D</span>
+                </div>
+                <div class="card neon-green" onclick="expandCard(this)">
+                    <div class="card-icon">⭕</div>
+                    <h3>Círculo</h3>
+                    <p class="formula">Área: π · r²</p>
+                    <p class="formula">Circunferência: 2πr</p>
+                    <span class="badge">2D</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA 2: GEOMETRIA ESPACIAL -->
+        <section id="espacial" class="tab-content">
+            <div class="section-title">
+                <h2>Geometria Espacial</h2>
+                <p>Mergulhe no mundo tridimensional dos sólidos geométricos.</p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card neon-purple" onclick="expandCard(this)">
+                    <div class="card-icon">🧊</div>
+                    <h3>Cubo</h3>
+                    <p class="formula">Volume: a³</p>
+                    <p class="formula">Área Total: 6a²</p>
+                    <span class="badge">3D</span>
+                </div>
+                <div class="card neon-blue" onclick="expandCard(this)">
+                    <div class="card-icon">🌍</div>
+                    <h3>Esfera</h3>
+                    <p class="formula">Volume: (4/3)πr³</p>
+                    <p class="formula">Área: 4πr²</p>
+                    <span class="badge">3D</span>
+                </div>
+                <div class="card neon-green" onclick="expandCard(this)">
+                    <div class="card-icon">🛢️</div>
+                    <h3>Cilindro</h3>
+                    <p class="formula">Volume: πr²h</p>
+                    <span class="badge">3D</span>
+                </div>
+                <div class="card neon-pink" onclick="expandCard(this)">
+                    <div class="card-icon">🍦</div>
+                    <h3>Cone</h3>
+                    <p class="formula">Volume: (1/3)πr²h</p>
+                    <span class="badge">3D</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA 3: SUPER SIMULADOR -->
+        <section id="simulador" class="tab-content">
+            <div class="section-title">
+                <h2>Laboratório de Cálculo</h2>
+                <p>Insira as medidas e descubra o resultado com animação em tempo real!</p>
+            </div>
+
+            <div class="simulator-card">
+                <div class="input-group">
+                    <label for="shapeSelect">Selecione o Objeto Geométrico:</label>
+                    <select id="shapeSelect" onchange="setupSimulator()">
+                        <option value="quadrado">Quadrado (Área)</option>
+                        <option value="retangulo">Retângulo (Área)</option>
+                        <option value="circulo">Círculo (Área)</option>
+                        <option value="cubo">Cubo (Volume)</option>
+                        <option value="cilindro">Cilindro (Volume)</option>
+                    </select>
+                </div>
+
+                <div id="dynamicInputs" class="dynamic-inputs">
+                    <!-- Preenchido via JavaScript -->
+                </div>
+
+                <button class="action-btn" onclick="executarCalculo()">✨ Calcular Agora</button>
+
+                <div id="resultContainer" class="result-container hidden">
+                    <h3>🎯 Resultado do Cálculo:</h3>
+                    <div id="resultValue" class="result-value">0</div>
+                    <p id="resultDetails" class="result-details"></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Desenvolvido com pura energia matemática &bull; 2026</p>
+    </footer>
+
+    <!-- Script Dinâmico -->
+    <script>
+        // Sistema de Abas Fluido
+        function switchTab(evt, tabId) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        // Efeito interativo nos cards
+        function cardEffect(card) {
+            card.style.transform = 'translateY(-8px) scale(1.02)';
+            setTimeout(() => { card.style.transform = 'translateY(0) scale(1)'; }, 300);
+        }
+
+        // Configuração Dinâmica do Simulador
+        window.onload = () => { setupSimulator(); };
+
+        function setupSimulator() {
+            const shape = document.getElementById('shapeSelect').value;
+            const container = document.getElementById('dynamicInputs');
+            
+            if (shape === 'quadrado') {
+                container.innerHTML = `
+                    <div class="field"><label>Medida do Lado (l):</label><input type="number" id="in1" placeholder="Ex: 6"></div>
+                `;
+            } else if (shape === 'retangulo') {
+                container.innerHTML = `
+                    <div class="field"><label>Base (b):</label><input type="number" id="in1" placeholder="Ex: 8"></div>
+                    <div class="field"><label>Altura (h):</label><input type="number" id="in2" placeholder="Ex: 4"></div>
+                `;
+            } else if (shape === 'circulo') {
+                container.innerHTML = `
+                    <div class="field"><label>Raio (r):</label><input type="number" id="in1" placeholder="Ex: 3"></div>
+                `;
+            } else if (shape === 'cubo') {
+                container.innerHTML = `
+                    <div class="field"><label>Aresta (a):</label><input type="number" id="in1" placeholder="Ex: 5"></div>
+                `;
+            } else if (shape === 'cilindro') {
+                container.innerHTML = `
+                    <div class="field"><label>Raio da Base (r):</label><input type="number" id="in1" placeholder="Ex: 3"></div>
+                    <div class="field"><label>Altura (h):</label><input type="number" id="in2" placeholder="Ex: 10"></div>
+                `;
+            }
+        }
+
+        function executarCalculo() {
+            const shape = document.getElementById('shapeSelect').value;
+            const v1 = parseFloat(document.getElementById('in1').value);
+            const v2 = document.getElementById('in2') ? parseFloat(document.getElementById('in2').value) : 0;
+            const resContainer = document.getElementById('resultContainer');
+            const resValue = document.getElementById('resultValue');
+            const resDetails = document.getElementById('resultDetails');
+
+            if (isNaN(v1) || (document.getElementById('in2') && isNaN(v2))) {
+                alert("⚠️ Por favor, insira valores válidos em todos os campos!");
+                return;
+            }
+
+            let resultado = 0;
+            let formulaUsada = "";
+            let unidade = "";
+
+            if (shape === 'quadrado') {
+                resultado = v1 * v1;
+                formulaUsada = `Área = ${v1} × ${v1}`;
+                unidade = "unidades² (Área)";
+            } else if (shape === 'retangulo') {
+                resultado = v1 * v2;
+                formulaUsada = `Área = ${v1} (Base) × ${v2} (Altura)`;
+                unidade = "unidades² (Área)";
+            } else if (shape === 'circulo') {
+                resultado = Math.PI * Math.pow(v1, 2);
+                formulaUsada = `Área = π × (${v1})²`;
+                unidade = "unidades² (Área)";
+            } else if (shape === 'cubo') {
+                resultado = Math.pow(v1, 3);
+                formulaUsada = `Volume = (${v1})³`;
+                unidade = "unidades³ (Volume)";
+            } else if (shape === 'cilindro') {
+                resultado = Math.PI * Math.pow(v1, 2) * v2;
+                formulaUsada = `Volume = π × (${v1})² × ${v2}`;
+                unidade = "unidades³ (Volume)";
+            }
+
+            resValue.innerHTML = resultado.toFixed(2);
+            resDetails.innerHTML = `Fórmula aplicada: <strong>${formulaUsada}</strong><br>Medida final em ${unidade}`;
+            resContainer.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
